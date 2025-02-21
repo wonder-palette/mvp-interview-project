@@ -21,7 +21,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 //  実際にDriveへアップロードしたい場合は
 //  サービスアカウント設定＆キー読み込みが必要です
 // ------------------
-/*
+
 const KEYFILE_PATH = path.join(__dirname, 'service-account-key.json');
 const SCOPES = ['https://www.googleapis.com/auth/drive.file'];
 const auth = new google.auth.GoogleAuth({
@@ -29,7 +29,7 @@ const auth = new google.auth.GoogleAuth({
   scopes: SCOPES,
 });
 const driveService = google.drive({ version: 'v3', auth });
-*/
+
 
 // ------------------
 // 3) 動画ファイル受取API (MVP用のダミー実装)
@@ -41,20 +41,20 @@ app.post('/upload', upload.single('videoFile'), async (req, res) => {
     //   もしGoogle Driveへアップロードしたいなら
     //   下記の "driveService.files.create" を利用してください。
 
-    // const fileBuffer = req.file.buffer;
-    // const fileName = req.file.originalname;
-    // const response = await driveService.files.create({
-    //   requestBody: {
-    //     name: fileName,
-    //     // parents: ['<Your-Google-Drive-Folder-ID>']
-    //   },
-    //   media: {
-    //     mimeType: req.file.mimetype,
-    //     body: Buffer.from(fileBuffer)
-    //   }
-    // });
+     const fileBuffer = req.file.buffer;
+     const fileName = req.file.originalname;
+     const response = await driveService.files.create({
+       requestBody: {
+         name: fileName,
+          parents: ['1NBXkOqsHOT0_uyiVYBlqpX1KdUMlAKNk']
+       },
+       media: {
+         mimeType: req.file.mimetype,
+         body: Buffer.from(fileBuffer)
+       }
+     });
 
-    // console.log('Uploaded File ID:', response.data.id);
+     console.log('Uploaded File ID:', response.data.id);
 
     console.log('Received file:', req.file.originalname, req.file.size, 'bytes');
 
