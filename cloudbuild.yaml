@@ -1,11 +1,14 @@
 # cloudbuild.yaml
-options:
-  # ログを保存するバケットを指定する場合（例）
-  logsBucket: "gs://my-logs-bucket"
-  # バケット指定が難しい場合は何も書かずに試してもOK
+# (b) defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET を使う例
 
+options:
+  # Cloud Buildが自動で「ユーザー所有リージョナルバケット」を生成し、そこにログを保存
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+
+# Cloud Buildが使用するサービスアカウント (例: [PROJECT_NUMBER]@cloudbuild.gserviceaccount.com)
 serviceAccount: "634960214697@cloudbuild.gserviceaccount.com"
 
+# ビルド手順を定義
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
@@ -14,5 +17,6 @@ steps:
       - 'asia-northeast1-docker.pkg.dev/mvp-interview-project/my-docker-repo/mvp-interview:v1'
       - '.'
 
+# ビルド完了後に生成するイメージ
 images:
   - 'asia-northeast1-docker.pkg.dev/mvp-interview-project/my-docker-repo/mvp-interview:v1'
