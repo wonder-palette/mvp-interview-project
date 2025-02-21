@@ -1,0 +1,18 @@
+# cloudbuild.yaml
+options:
+  # ログを保存するバケットを指定する場合（例）
+  logsBucket: "gs://my-logs-bucket"
+  # バケット指定が難しい場合は何も書かずに試してもOK
+
+serviceAccount: "634960214697@cloudbuild.gserviceaccount.com"
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'asia-northeast1-docker.pkg.dev/mvp-interview-project/my-docker-repo/mvp-interview:v1'
+      - '.'
+
+images:
+  - 'asia-northeast1-docker.pkg.dev/mvp-interview-project/my-docker-repo/mvp-interview:v1'
