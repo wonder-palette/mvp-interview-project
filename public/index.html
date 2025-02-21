@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>AI面接(MVP)</title>
+  <style>
+    body {
+      display: flex; 
+      flex-direction: column;
+      justify-content: center; 
+      align-items: center; 
+      height: 100vh;
+      margin: 0; 
+      background: #f0f0f0;
+    }
+    .avatar-container {
+      position: relative;
+      width: 400px;
+      height: 300px;
+      margin-bottom: 20px;
+    }
+    .avatar-image,
+    .avatar-mouth {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .avatar-mouth {
+      display: none; /* 音声再生時に表示 */
+    }
+    .candidate-video {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      width: 150px;
+      height: 110px;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>AI面接システム (MVP)</h1>
+  
+  <div class="avatar-container">
+    <img src="avatar.png" alt="Avatar" class="avatar-image" />
+    <img src="mouth.gif" alt="MouthGIF" class="avatar-mouth" />
+  </div>
+  
+  <video class="candidate-video" autoplay muted></video>
+  
+  <button id="startBtn">面接開始</button>
+  <button id="stopBtn" disabled>面接終了</button>
+
+  <!-- メインロジックを読み込む -->
+  <script src="main.js"></script>
+</body>
+</html>
