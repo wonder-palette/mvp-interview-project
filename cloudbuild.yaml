@@ -1,7 +1,7 @@
 # cloudbuild.yaml
 options:
   # ログを保存するバケットを指定する場合（例）
-  #//logsBucket: "gs://my-logs-bucket"
+  logsBucket: "gs://my-logs-bucket"
   # バケット指定が難しい場合は何も書かずに試してもOK
 
 serviceAccount: "634960214697@cloudbuild.gserviceaccount.com"
