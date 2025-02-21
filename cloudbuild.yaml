@@ -1,20 +1,14 @@
-# cloudbuild.yaml
-
 options:
-  # (b) defaultLogsBucketBehavior でリージョナルバケットを自動生成し、ログを保存
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 
-# ここで Cloud Build が使うサービスアカウントを明示指定
-serviceAccount: "726149349050@cloudbuild.gserviceaccount.com"
+serviceAccount: "projects/mvp-ai-interview/serviceAccounts/726149349050@cloudbuild.gserviceaccount.com"
 
 steps:
-  # Dockerビルドステップ (単純な例)
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
       - '-t'
       - 'asia-northeast1-docker.pkg.dev/mvp-ai-interview/my-docker-repo/mvp:v1'
       - '.'
-
 images:
   - 'asia-northeast1-docker.pkg.dev/mvp-ai-interview/my-docker-repo/mvp:v1'
